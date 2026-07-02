@@ -13,10 +13,6 @@ Constraints:
 1 <= nums.length <= 104
 -231 <= nums[i] <= 231 - 1 */
 
-#include <vector>
-#include <iostream>
-using namespace std;
-
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
@@ -33,13 +29,3 @@ public:
     }
 
 };
-
-/* int main() {
-    Solution solution;
-    vector<int> nums = {0, 1, 0, 3, 12};
-    solution.moveZeroes(nums);
-    for (int num : nums) {
-        cout << num << " ";
-    }
-    return 0;
-} */
