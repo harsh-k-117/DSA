@@ -18,23 +18,48 @@ Output: 21
 Constraints:
 -231 <= x <= 231 - 1 */
 
+#include <iostream>
+#include <climits>
+
+using namespace std;
+
 class Solution {
 public:
     int reverse(int x) {
         int reverse_int = 0;
         int digit = 0;
 
-        while(x!=0){
+        while (x != 0) {
             if (reverse_int > INT_MAX / 10 ||
                 reverse_int < INT_MIN / 10 ||
                 (reverse_int == INT_MAX / 10 && digit > 7) ||
-                (reverse_int == INT_MIN / 10 && digit < -8)){
-                    return 0;
+                (reverse_int == INT_MIN / 10 && digit < -8)) {
+                return 0;
             }
-            digit = x%10;
-            reverse_int = reverse_int*10+digit;
-            x=x/10;
+
+            digit = x % 10;
+            reverse_int = reverse_int * 10 + digit;
+            x = x / 10;
         }
+
         return reverse_int;
     }
 };
+
+int main() {
+    Solution solution;
+
+    int x1 = 123;
+    cout << "Test 1: " << solution.reverse(x1) << endl;
+
+    int x2 = -123;
+    cout << "Test 2: " << solution.reverse(x2) << endl;
+
+    int x3 = 120;
+    cout << "Test 3: " << solution.reverse(x3) << endl;
+
+    int x4 = 1534236469;
+    cout << "Test 4: " << solution.reverse(x4) << endl;
+
+    return 0;
+}

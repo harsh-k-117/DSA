@@ -16,25 +16,53 @@ Explanation: We return false because 3.742 * 3.742 = 14 and 3.742 is not an inte
 Constraints:
 1 <= num <= 231 - 1 */
 
+#include <iostream>
+
+using namespace std;
+
 class Solution {
 public:
     bool isPerfectSquare(int num) {
-        int low = 0; 
+        int low = 0;
         int high = num;
-        while(low <= high){
-            int mid = ((high + low)/2);
-            long long sq = 1LL*mid*mid;
 
-            if(sq == num){
+        while (low <= high) {
+            int mid = (high + low) / 2;
+            long long sq = 1LL * mid * mid;
+
+            if (sq == num) {
                 return true;
             }
-            else if(sq > num){
-                high = mid-1;
+            else if (sq > num) {
+                high = mid - 1;
             }
-            else if(sq < num){
-                low = mid+1;
+            else {
+                low = mid + 1;
             }
         }
+
         return false;
     }
 };
+
+int main() {
+    Solution solution;
+
+    int num1 = 16;
+    cout << "Test 1: " << boolalpha
+         << solution.isPerfectSquare(num1) << endl;
+
+    int num2 = 14;
+    cout << "Test 2: "
+         << solution.isPerfectSquare(num2) << endl;
+
+    int num3 = 1;
+    cout << "Test 3: "
+         << solution.isPerfectSquare(num3) << endl;
+
+    int num4 = 2147395600;
+    cout << "Test 4: "
+         << solution.isPerfectSquare(num4) << endl;
+
+    return 0;
+}

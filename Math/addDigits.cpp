@@ -17,15 +17,39 @@ Output: 0
 Constraints:
 0 <= num <= 231 - 1 */
 
+#include <iostream>
+
+using namespace std;
+
 class Solution {
 public:
     int addDigits(int num) {
-        if(num==0){
+        if (num == 0) {
             return 0;
         }
-        if(num%9==0){
+
+        if (num % 9 == 0) {
             return 9;
         }
-        return (num%9);
+
+        return num % 9;
     }
 };
+
+int main() {
+    Solution solution;
+
+    int num1 = 38;
+    cout << "Test 1: " << solution.addDigits(num1) << endl;
+
+    int num2 = 0;
+    cout << "Test 2: " << solution.addDigits(num2) << endl;
+
+    int num3 = 12345;
+    cout << "Test 3: " << solution.addDigits(num3) << endl;
+
+    int num4 = 9;
+    cout << "Test 4: " << solution.addDigits(num4) << endl;
+
+    return 0;
+}
