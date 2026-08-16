@@ -14,6 +14,11 @@ Constraints:
 1 <= s.length, t.length <= 5 * 104
 s and t consist of lowercase English letters.*/
 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 class Solution {
 public:
     bool isAnagram(string s, string t) {
@@ -37,3 +42,24 @@ public:
         return true;
     }
 };
+
+int main() {
+    Solution solution;
+
+    string s1 = "anagram";
+    string t1 = "nagaram";
+    cout << "Test 1: " << boolalpha
+         << solution.isAnagram(s1, t1) << endl;
+
+    string s2 = "rat";
+    string t2 = "car";
+    cout << "Test 2: "
+         << solution.isAnagram(s2, t2) << endl;
+
+    string s3 = "listen";
+    string t3 = "silent";
+    cout << "Test 3: "
+         << solution.isAnagram(s3, t3) << endl;
+
+    return 0;
+}

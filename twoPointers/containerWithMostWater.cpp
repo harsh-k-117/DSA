@@ -19,6 +19,12 @@ n == height.length
 2 <= n <= 105
 0 <= height[i] <= 104 */
 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
     int maxArea(vector<int>& height) {
@@ -26,20 +32,34 @@ public:
         int right = height.size() - 1;
         int maxArea = 0;
 
-        while(left < right ){
-            int width = (right - left);
+        while (left < right) {
+            int width = right - left;
             int currentArea = width * min(height[left], height[right]);
             maxArea = max(currentArea, maxArea);
 
-            if(height[left] < height[right]){
+            if (height[left] < height[right]) {
                 left++;
             }
-            else{
+            else {
                 right--;
             }
-
         }
 
         return maxArea;
     }
 };
+
+int main() {
+    Solution solution;
+
+    vector<int> height1 = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+    cout << "Test 1: " << solution.maxArea(height1) << endl;
+
+    vector<int> height2 = {1, 1};
+    cout << "Test 2: " << solution.maxArea(height2) << endl;
+
+    vector<int> height3 = {1, 5, 4, 3, 2};
+    cout << "Test 3: " << solution.maxArea(height3) << endl;
+
+    return 0;
+}

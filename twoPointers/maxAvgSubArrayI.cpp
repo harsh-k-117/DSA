@@ -18,42 +18,48 @@ n == nums.length
 -104 <= nums[i] <= 104
 */
 
+#include <iostream>
 #include <vector>
 #include <algorithm>
-#include <iostream>
+
 using namespace std;
 
 class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
-        
-        //sum of first k-sized window
         int sum = 0;
-        for(int i=0; i<k; i++){
+
+        for (int i = 0; i < k; i++) {
             sum += nums[i];
         }
+
         int maxSum = sum;
 
         int left = 0;
-        int right = k-1;
+        int right = k - 1;
 
-        //remove old left and add new right to the sum and update maxSum if greater
-        while(right < nums.size() - 1){
+        while (right < nums.size() - 1) {
             left++;
             right++;
 
-            sum = sum - nums[left-1] + nums[right];
+            sum = sum - nums[left - 1] + nums[right];
             maxSum = max(maxSum, sum);
         }
 
-        return (double)maxSum / k; //avg
+        return (double)maxSum / k;
     }
 };
 
-int main(){
+int main() {
     Solution s;
-    vector<int> nums = {1,12,-5,-6,50,3};
-    int k = 4;
-    cout << s.findMaxAverage(nums, k) << endl;
+
+    vector<int> nums1 = {1, 12, -5, -6, 50, 3};
+    int k1 = 4;
+    cout << "Test 1: " << s.findMaxAverage(nums1, k1) << endl;
+
+    vector<int> nums2 = {5};
+    int k2 = 1;
+    cout << "Test 2: " << s.findMaxAverage(nums2, k2) << endl;
+
     return 0;
 }

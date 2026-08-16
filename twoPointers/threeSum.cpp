@@ -27,49 +27,94 @@ Constraints:
 3 <= nums.length <= 3000
 -105 <= nums[i] <= 105 */
 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-
         vector<vector<int>> ans = {};
-        sort(nums.begin(), nums.end());     //sorting
+        sort(nums.begin(), nums.end());
 
-        for(int i=0; i<nums.size(); i++){       //fix an element then do 2 sum
+        for (int i = 0; i < nums.size(); i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
 
-        if(i > 0 && nums[i] == nums[i-1]){  //skip same fixed element
-            continue;
-        }
+            int left = i + 1;
+            int right = nums.size() - 1;
 
-        int left = i+1;
-        int right = nums.size() - 1;
-
-            while(left < right){        //scan for 2 numbers which = -nums[i]
-
+            while (left < right) {
                 int sum = nums[left] + nums[right] + nums[i];
-                if(sum == 0){
+
+                if (sum == 0) {
                     ans.push_back({nums[i], nums[left], nums[right]});
                     left++;
                     right--;
 
-                    while(left < right && nums[left] == nums[left-1]){
-                        left++;         //skip if left is duplicate
+                    while (left < right && nums[left] == nums[left - 1]) {
+                        left++;
                     }
 
-                    while(left < right && nums[right] == nums[right+1]){
-                        right--;         //skip if right is duplicate
+                    while (left < right && nums[right] == nums[right + 1]) {
+                        right--;
                     }
                 }
 
-                if(sum < 0){
+                if (sum < 0) {
                     left++;
                 }
-                else if(sum > 0){
+                else if (sum > 0) {
                     right--;
                 }
-
             }
         }
 
         return ans;
     }
 };
+
+void printVector(const vector<vector<int>>& nums) {
+    cout << "[";
+
+    for (int i = 0; i < nums.size(); i++) {
+        cout << "[";
+
+        for (int j = 0; j < nums[i].size(); j++) {
+            cout << nums[i][j];
+
+            if (j < nums[i].size() - 1) {
+                cout << ", ";
+            }
+        }
+
+        cout << "]";
+
+        if (i < nums.size() - 1) {
+            cout << ", ";
+        }
+    }
+
+    cout << "]" << endl;
+}
+
+int main() {
+    Solution solution;
+
+    vector<int> nums1 = {-1, 0, 1, 2, -1, -4};
+    cout << "Test 1: ";
+    printVector(solution.threeSum(nums1));
+
+    vector<int> nums2 = {0, 1, 1};
+    cout << "Test 2: ";
+    printVector(solution.threeSum(nums2));
+
+    vector<int> nums3 = {0, 0, 0};
+    cout << "Test 3: ";
+    printVector(solution.threeSum(nums3));
+
+    return 0;
+}
