@@ -25,9 +25,40 @@ piles.length is even.
 1 <= piles[i] <= 500
 sum(piles[i]) is odd. */
 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
     bool stoneGame(vector<int>& piles) {
+        /*There are an even number of piles.
+        Alice can always choose a strategy that guarantees
+        she gets either all the even-indexed piles or all
+        the odd-indexed piles.
+        
+        Since the total number of stones is odd, one of
+        those two groups must contain more stones than the other.
+        Alice can choose that winning group.
+        
+        Therefore, Alice always wins.*/
+        
         return true;
     }
 };
+
+int main() {
+    Solution solution;
+
+    vector<int> piles1 = {5, 3, 4, 5};
+    cout << "Test 1: " << boolalpha << solution.stoneGame(piles1) << endl;
+
+    vector<int> piles2 = {3, 7, 2, 3};
+    cout << "Test 2: " << solution.stoneGame(piles2) << endl;
+
+    vector<int> piles3 = {1, 2};
+    cout << "Test 3: " << solution.stoneGame(piles3) << endl;
+
+    return 0;
+}

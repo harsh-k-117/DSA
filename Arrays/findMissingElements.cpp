@@ -27,6 +27,12 @@ Constraints:
 2 <= nums.length <= 100
 1 <= nums[i] <= 100 */
 
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+
+using namespace std;
+
 class Solution {
 public:
     vector<int> findMissingElements(vector<int>& nums) {
@@ -36,22 +42,64 @@ public:
         int minimum = nums[0];
         int maximum = nums[0];
 
-        for(int i=0; i<n; i++){
+        for (int i = 0; i < n; i++) {
             s.insert(nums[i]);
 
-            if(nums[i]>maximum){
+            if (nums[i] > maximum) {
                 maximum = nums[i];
             }
-            else if(nums[i]<minimum){
+            else if (nums[i] < minimum) {
                 minimum = nums[i];
             }
         }
 
-        for(int i=minimum; i<= maximum; i++){
-            if(s.count(i)==0){
+        for (int i = minimum; i <= maximum; i++) {
+            if (s.count(i) == 0) {
                 ans.push_back(i);
             }
         }
+
         return ans;
     }
 };
+
+void printVector(const vector<int>& nums) {
+    cout << "[";
+
+    for (int i = 0; i < nums.size(); i++) {
+        cout << nums[i];
+
+        if (i < nums.size() - 1) {
+            cout << ", ";
+        }
+    }
+
+    cout << "]" << endl;
+}
+
+int main() {
+    Solution solution;
+
+    // Test Case 1
+    vector<int> nums1 = {1, 4, 2, 5};
+    vector<int> result1 = solution.findMissingElements(nums1);
+
+    cout << "Test 1: ";
+    printVector(result1);
+
+    // Test Case 2
+    vector<int> nums2 = {7, 8, 6, 9};
+    vector<int> result2 = solution.findMissingElements(nums2);
+
+    cout << "Test 2: ";
+    printVector(result2);
+
+    // Test Case 3
+    vector<int> nums3 = {5, 1};
+    vector<int> result3 = solution.findMissingElements(nums3);
+
+    cout << "Test 3: ";
+    printVector(result3);
+
+    return 0;
+}

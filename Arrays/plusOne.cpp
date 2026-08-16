@@ -29,19 +29,62 @@ Constraints:
 0 <= digits[i] <= 9
 digits does not contain any leading 0's. */
 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
         int n = digits.size();
 
-        for(int i=n-1; i>=0; i--){
-            if(digits[i] < 9){
+        for (int i = n - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
                 digits[i]++;
                 return digits;
             }
+
             digits[i] = 0;
         }
+
         digits.insert(digits.begin(), 1);
         return digits;
     }
 };
+
+void printVector(const vector<int>& nums) {
+    cout << "[";
+
+    for (int i = 0; i < nums.size(); i++) {
+        cout << nums[i];
+
+        if (i < nums.size() - 1) {
+            cout << ", ";
+        }
+    }
+
+    cout << "]" << endl;
+}
+
+int main() {
+    Solution solution;
+
+    vector<int> digits1 = {1, 2, 3};
+    cout << "Test 1: ";
+    printVector(solution.plusOne(digits1));
+
+    vector<int> digits2 = {4, 3, 2, 1};
+    cout << "Test 2: ";
+    printVector(solution.plusOne(digits2));
+
+    vector<int> digits3 = {9};
+    cout << "Test 3: ";
+    printVector(solution.plusOne(digits3));
+
+    vector<int> digits4 = {9, 9, 9};
+    cout << "Test 4: ";
+    printVector(solution.plusOne(digits4));
+
+    return 0;
+}

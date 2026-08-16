@@ -20,6 +20,12 @@ Constraints:
 2 <= nums.length <= 500
 1 <= nums[i] <= 10^3 */
 
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
@@ -27,14 +33,30 @@ public:
         int max1 = INT_MIN;
         int max2 = INT_MIN;
 
-        for(int i=0; i<n; i++){
-            if(nums[i]>max1){
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > max1) {
                 max2 = max1;
                 max1 = nums[i];
-            }else if(nums[i]>max2){
+            } else if (nums[i] > max2) {
                 max2 = nums[i];
             }
         }
-        return ((max1-1)*(max2-1));
+
+        return (max1 - 1) * (max2 - 1);
     }
 };
+
+int main() {
+    Solution solution;
+
+    vector<int> nums1 = {3, 4, 5, 2};
+    cout << "Test 1: " << solution.maxProduct(nums1) << endl;
+
+    vector<int> nums2 = {1, 5, 4, 5};
+    cout << "Test 2: " << solution.maxProduct(nums2) << endl;
+
+    vector<int> nums3 = {3, 7};
+    cout << "Test 3: " << solution.maxProduct(nums3) << endl;
+
+    return 0;
+}

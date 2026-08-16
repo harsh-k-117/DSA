@@ -29,26 +29,68 @@ numbers is sorted in non-decreasing order.
 The tests are generated such that there is exactly one solution.
 */
 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         int n = numbers.size();
         int left = 0;
-        int right = n-1;
+        int right = n - 1;
         vector<int> ans = {};
-        while(left<right){
-            if(numbers[left] + numbers[right] == target){
-                ans.push_back(left+1);
-                ans.push_back(right+1);
+
+        while (left < right) {
+            if (numbers[left] + numbers[right] == target) {
+                ans.push_back(left + 1);
+                ans.push_back(right + 1);
                 break;
             }
-            else if(numbers[left] + numbers[right] < target){
+            else if (numbers[left] + numbers[right] < target) {
                 left++;
             }
-            else if(numbers[left] + numbers[right] > target){
+            else if (numbers[left] + numbers[right] > target) {
                 right--;
             }
         }
+
         return ans;
     }
 };
+
+void printVector(const vector<int>& nums) {
+    cout << "[";
+
+    for (int i = 0; i < nums.size(); i++) {
+        cout << nums[i];
+
+        if (i < nums.size() - 1) {
+            cout << ", ";
+        }
+    }
+
+    cout << "]" << endl;
+}
+
+int main() {
+    Solution solution;
+
+    vector<int> numbers1 = {2, 7, 11, 15};
+    vector<int> result1 = solution.twoSum(numbers1, 9);
+    cout << "Test 1: ";
+    printVector(result1);
+
+    vector<int> numbers2 = {2, 3, 4};
+    vector<int> result2 = solution.twoSum(numbers2, 6);
+    cout << "Test 2: ";
+    printVector(result2);
+
+    vector<int> numbers3 = {-1, 0};
+    vector<int> result3 = solution.twoSum(numbers3, -1);
+    cout << "Test 3: ";
+    printVector(result3);
+
+    return 0;
+}
