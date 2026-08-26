@@ -24,43 +24,40 @@ Constraints:
 */
 
 #include <iostream>
+#include <unordered_set>
 #include <vector>
-#include <algorithm>
-
 using namespace std;
 
 class Solution {
 public:
+
     bool containsDuplicate(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
 
-        int n = nums.size();
+        unordered_set<int> s;
 
-        for (int i = 1; i < n; i++) {
-            if (nums[i] == nums[i - 1]) {
+        for (int num : nums) {
+            if(s.count(num)){
                 return true;
             }
+            s.insert(num);
         }
 
         return false;
+
     }
 };
 
 int main() {
-    Solution solution;
+    Solution s;
 
-    // Test Case 1
     vector<int> nums1 = {1, 2, 3, 1};
-    cout << boolalpha;
-    cout << "Test 1: " << solution.containsDuplicate(nums1) << endl;
+    cout << boolalpha << s.containsDuplicate(nums1) << endl; // Output: true    
 
-    // Test Case 2
     vector<int> nums2 = {1, 2, 3, 4};
-    cout << "Test 2: " << solution.containsDuplicate(nums2) << endl;
+    cout << boolalpha << s.containsDuplicate(nums2) << endl; // Output: false
 
-    // Test Case 3
-    vector<int> nums3 = {1, 1, 1, 3, 3, 4, 3, 2, 4, 2};
-    cout << "Test 3: " << solution.containsDuplicate(nums3) << endl;
+    vector<int> nums3 = {1, 1, 1, 3, 3, 4, 3, 2, 4, 2};     
+    cout << boolalpha << s.containsDuplicate(nums3) << endl; // Output: true
 
     return 0;
 }
